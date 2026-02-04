@@ -1,0 +1,56 @@
+# Image Generation MCP Server Configuration
+# Copy to ~/.config/image-gen-mcp/config.yaml and fill in values
+
+# Image Generation Provider
+# Supported: gemini | fal | replicate | together | huggingface
+provider:
+  name: gemini                         # Recommended: Gemini with free tier
+  api_key: ${GOOGLE_API_KEY}           # Set GOOGLE_API_KEY environment variable
+  default_model: gemini-2.0-flash-exp  # Fast, free tier available
+  # fallback_provider: fal             # Optional: fallback if primary fails
+
+# Alternative: Fal.ai
+# provider:
+#   name: fal
+#   api_key: ${FAL_API_KEY}
+#   default_model: fal-ai/flux/schnell
+
+# Alternative: Replicate
+# provider:
+#   name: replicate
+#   api_key: ${REPLICATE_API_TOKEN}
+#   default_model: black-forest-labs/flux-schnell
+
+# Cloud Storage
+# Supported: r2 | b2 | wasabi | local
+storage:
+  name: r2                             # Cloudflare R2 (recommended - free egress)
+  bucket: my-images                    # Your bucket name
+  endpoint: ${R2_ENDPOINT}             # https://xxx.r2.cloudflarestorage.com
+  access_key: ${R2_ACCESS_KEY}         # R2 access key
+  secret_key: ${R2_SECRET_KEY}         # R2 secret key
+  public_url_prefix: https://images.example.com  # Public URL for serving
+  path_template: "{year}/{month}/{filename}"     # Path pattern in bucket
+
+# Alternative: Local storage (for testing)
+# storage:
+#   name: local
+#   path: ~/.config/image-gen-mcp/images
+#   public_url_prefix: file://~/.config/image-gen-mcp/images
+
+# Cost Management
+budget:
+  monthly_limit: 10.00                 # USD - set to 0 for unlimited
+  alert_threshold: 0.8                 # Alert at 80% of budget
+  alert_method: log                    # log | webhook
+
+# Generation Defaults
+defaults:
+  count: 3                             # Number of variations per generation
+  aspect_ratio: "16:9"                 # Default aspect ratio
+  save_local_backup: false             # Keep local copy after R2 upload
+  auto_cleanup_days: 30                # Delete unselected generations after N days
+
+# Database (optional - defaults shown)
+# database:
+#   path: ~/.config/image-gen-mcp/generations.db

@@ -1,0 +1,50 @@
+{
+  "name": "@mahesh/image-gen-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for AI image generation with multi-provider support, cloud storage, and cost tracking",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "image-gen-mcp": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js",
+    "test": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "vitest run tests/e2e",
+    "lint": "eslint src --ext .ts",
+    "setup": "node dist/cli.js setup"
+  },
+  "keywords": [
+    "mcp",
+    "image-generation",
+    "ai",
+    "fal",
+    "replicate",
+    "claude"
+  ],
+  "author": "Mahesh",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.500.0",
+    "@fal-ai/client": "^1.2.0",
+    "@google/genai": "^1.39.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^17.2.3",
+    "sql.js": "^1.10.0",
+    "yaml": "^2.3.4",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/sql.js": "^1.4.9",
+    "typescript": "^5.3.3",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

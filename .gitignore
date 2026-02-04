@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Database
+*.db
+*.sqlite
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Config with secrets
+config.yaml
+
+# Test coverage
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
