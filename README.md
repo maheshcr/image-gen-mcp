@@ -52,50 +52,53 @@ npm install
 npm run build
 ```
 
-### 2. Configure
+### 2. Configure (Interactive Wizard)
 
 ```bash
-# Create config directory
+npm run setup
+```
+
+The wizard will guide you through:
+- Choosing an image provider (with links to get API keys)
+- Configuring storage (local or cloud)
+- Optional budget limits
+
+```
+╭─────────────────────────────────────────────────────────╮
+│  Image Generation MCP - Setup Wizard                    │
+╰─────────────────────────────────────────────────────────╯
+
+━━━ Step 1/3: Image Provider ━━━
+Choose your image generation provider:
+────────────────────────────────────────
+  1. Gemini (https://ai.google.dev/)
+  2. Fal.ai (https://fal.ai/)
+  3. Together.ai (https://together.ai/)
+  4. Replicate (https://replicate.com/)
+  5. HuggingFace (https://huggingface.co/inference-api)
+
+Select [1-5]: 1
+
+Get your API key at: https://ai.google.dev/
+Enter your Gemini API key: ********
+```
+
+<details>
+<summary>Manual Configuration (Alternative)</summary>
+
+If you prefer manual setup:
+
+```bash
 mkdir -p ~/.config/image-gen-mcp
-
-# Copy example config
 cp config.example.yaml ~/.config/image-gen-mcp/config.yaml
-
-# Edit with your API keys and storage settings
-nano ~/.config/image-gen-mcp/config.yaml
+# Edit config.yaml with your settings
 ```
 
-**Minimal config (Gemini + Local storage):**
+See [config.example.yaml](config.example.yaml) for all options.
 
-```yaml
-provider:
-  name: gemini
-  api_key: ${GOOGLE_API_KEY}
-  default_model: gemini-2.0-flash-exp
+</details>
 
-storage:
-  name: local
-  path: ~/.config/image-gen-mcp/images
-```
-
-**Production config (Gemini + R2):**
-
-```yaml
-provider:
-  name: gemini
-  api_key: ${GOOGLE_API_KEY}
-  default_model: gemini-2.0-flash-exp
-
-storage:
-  name: r2
-  bucket: my-images
-  endpoint: ${R2_ENDPOINT}
-  access_key: ${R2_ACCESS_KEY}
-  secret_key: ${R2_SECRET_KEY}
-  public_url_prefix: https://images.yourdomain.com
-```
-
-### 3. Set Environment Variables
+### 3. Set Environment Variables (if not using wizard)
 
 ```bash
 # For Gemini (recommended - has free tier)
@@ -211,21 +214,45 @@ Get cost tracking information.
 }
 ```
 
+### `configure`
+
+View or update settings from within Claude Code.
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `show` | boolean | Show current configuration |
+| `provider` | string | Switch provider: gemini, fal, together, replicate, huggingface |
+| `model` | string | Set default model |
+| `budget_limit` | number | Set monthly budget in USD |
+| `count` | number | Default variations per generation (1-4) |
+| `aspect_ratio` | string | Default aspect ratio |
+
+**Examples:**
+```
+"Show my current config"        → configure()
+"Switch to Fal.ai"              → configure({ provider: "fal" })
+"Set budget to $20/month"       → configure({ budget_limit: 20 })
+"Generate 2 images by default"  → configure({ count: 2 })
+```
+
 ## Supported Providers
 
-| Provider | Models | Pricing | Notes |
+| Provider | Models | Pricing | Links |
 |----------|--------|---------|-------|
-| **Gemini** | gemini-2.0-flash-exp | Free tier available | Recommended for starting |
-| **Fal.ai** | Flux Schnell, Flux Dev, SDXL | ~$0.01-0.03/image | Fast, reliable |
-| **Replicate** | Flux, SDXL, SD3 | ~$0.01-0.05/image | Widest selection |
+| **Gemini** | gemini-2.0-flash-exp | Free tier available | [ai.google.dev](https://ai.google.dev/) |
+| **Fal.ai** | Flux Schnell, Flux Dev, SDXL | ~$0.01-0.03/image | [fal.ai](https://fal.ai/) |
+| **Together.ai** | FLUX.1-schnell (free), FLUX.1-dev | Free - $0.02/image | [together.ai](https://together.ai/) |
+| **Replicate** | Flux, SDXL, SD3 | ~$0.01-0.05/image | [replicate.com](https://replicate.com/) |
+| **HuggingFace** | FLUX, SDXL, many others | Free tier + pay-as-you-go | [huggingface.co](https://huggingface.co/inference-api) |
 
 ## Supported Storage
 
-| Provider | Egress Cost | Notes |
+| Provider | Egress Cost | Links |
 |----------|-------------|-------|
-| **Cloudflare R2** | Free | Recommended for production |
-| **Backblaze B2** | $0.01/GB | Good alternative |
-| **Local** | N/A | For testing only |
+| **Cloudflare R2** | Free egress | [developers.cloudflare.com/r2](https://developers.cloudflare.com/r2/) |
+| **Backblaze B2** | $0.01/GB | [backblaze.com](https://www.backblaze.com/cloud-storage) |
+| **Local** | N/A | For development/testing |
 
 ## Configuration Reference
 

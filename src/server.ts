@@ -10,6 +10,7 @@ import { selectImage } from './tools/select.js';
 import { listGenerations } from './tools/list.js';
 import { getCosts } from './tools/costs.js';
 import { cleanupPreviews } from './tools/cleanup.js';
+import { configureTool, configureToolDefinition } from './tools/configure.js';
 import { loadConfig } from './config/loader.js';
 import { createProviderFromConfig } from './providers/index.js';
 import { createStorageFromConfig } from './storage/index.js';
@@ -141,6 +142,7 @@ const tools = [
       },
     },
   },
+  configureToolDefinition,
 ];
 
 // Handle list tools request
@@ -167,6 +169,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     case 'cleanup_previews':
       return cleanupPreviews(args as any, { storage, db, config });
+
+    case 'configure':
+      const result = await configureTool(args as any);
+      return { content: [{ type: 'text', text: result }] };
 
     default:
       throw new Error(`Unknown tool: ${name}`);

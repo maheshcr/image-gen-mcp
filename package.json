@@ -20,11 +20,17 @@
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "image-generation",
     "ai",
+    "gemini",
     "fal",
     "replicate",
-    "claude"
+    "together",
+    "flux",
+    "stable-diffusion",
+    "claude",
+    "claude-code"
   ],
   "author": "Mahesh",
   "license": "MIT",
