@@ -1,0 +1,14 @@
+provider:
+  name: fal
+  api_key: ${FAL_API_KEY}
+  default_model: fal-ai/flux/schnell
+
+storage:
+  name: r2
+  bucket: test-bucket
+  access_key: ${R2_ACCESS_KEY}
+  secret_key: ${R2_SECRET_KEY}
+  public_url_prefix: https://images.example.com
+
+database:
+  path: /tmp/test-generations.db

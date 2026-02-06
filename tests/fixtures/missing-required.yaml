@@ -1,0 +1,11 @@
+provider:
+  name: fal
+  # api_key is missing
+
+storage:
+  name: r2
+  bucket: test-bucket
+  public_url_prefix: https://images.example.com
+
+database:
+  path: /tmp/test-generations.db

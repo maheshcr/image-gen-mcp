@@ -1,0 +1,11 @@
+provider:
+  name: gemini
+  api_key: test-gemini-key
+
+storage:
+  name: local
+  bucket: local-bucket
+  public_url_prefix: http://localhost:3000/images
+
+database:
+  path: /tmp/test-generations.db

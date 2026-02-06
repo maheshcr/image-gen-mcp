@@ -74,7 +74,7 @@ export async function loadConfig(): Promise<Config> {
   // Load .env from config directory if it exists
   const envPath = join(CONFIG_DIR, '.env');
   if (existsSync(envPath)) {
-    loadDotenv({ path: envPath });
+    loadDotenv({ path: envPath, quiet: true });
   }
 
   if (!existsSync(CONFIG_FILE)) {

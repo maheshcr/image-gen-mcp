@@ -1,0 +1,26 @@
+provider:
+  name: fal
+  api_key: test-api-key-12345
+  default_model: fal-ai/flux/schnell
+
+storage:
+  name: r2
+  bucket: test-bucket
+  endpoint: https://test.r2.cloudflarestorage.com
+  access_key: test-access-key
+  secret_key: test-secret-key
+  public_url_prefix: https://images.example.com
+
+budget:
+  monthly_limit: 25
+  alert_threshold: 0.75
+  alert_method: log
+
+defaults:
+  count: 4
+  aspect_ratio: "1:1"
+  save_local_backup: true
+  auto_cleanup_days: 14
+
+database:
+  path: /tmp/test-generations.db
