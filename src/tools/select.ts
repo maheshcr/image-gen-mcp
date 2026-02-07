@@ -1,6 +1,7 @@
 import { readFileSync, existsSync, unlinkSync, rmdirSync } from 'fs';
 import { dirname } from 'path';
 import type { StorageProvider } from '../storage/index.js';
+import { sanitizeForHeader } from '../storage/base.js';
 import type { GenerationStore } from '../db/generations.js';
 import type { Config } from '../config/loader.js';
 
@@ -62,13 +63,14 @@ export async function selectImage(args: SelectArgs, ctx: Context) {
   const filename = args.filename || `${slug}-${Date.now()}.${ext}`;
 
   // Upload to permanent storage location (using path_template)
+  // Sanitize prompt for HTTP headers (S3 metadata only allows ASCII)
   const uploadResult = await ctx.storage.upload({
     buffer,
     filename,
     contentType: ext === 'png' ? 'image/png' : 'image/jpeg',
     metadata: {
       generation_id: args.generation_id,
-      prompt: generation.prompt,
+      prompt: sanitizeForHeader(generation.prompt),
     },
   });
 
