@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Interactive CLI setup wizard (`npm run setup`)
+- MCP `configure` tool for updating settings from within Claude Code
+- Comprehensive test suite (267 tests)
+- GitHub Actions CI workflow
+- Issue and PR templates
+
+### Fixed
+
+- Unicode characters in prompts (em dashes, curly quotes, emoji) no longer cause S3 upload failures
+  - Added `sanitizeForHeader()` utility to convert unicode to ASCII equivalents
+  - Prompts are now safely stored as S3 object metadata
+
 ## [0.1.0] - 2026-02-04
 
 ### Added
@@ -35,5 +49,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Storage backend settings
   - Budget thresholds and alert configuration
 
-[Unreleased]: https://github.com/username/image-gen-mcp/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/username/image-gen-mcp/releases/tag/v0.1.0
+[Unreleased]: https://github.com/maheshcr/image-gen-mcp/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/maheshcr/image-gen-mcp/releases/tag/v0.1.0
