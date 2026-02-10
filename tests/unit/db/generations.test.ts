@@ -5,6 +5,7 @@
  * Each test starts with a fresh database instance.
  */
 
+import { randomUUID } from 'crypto';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import initSqlJs, { Database as SqlJsDatabase } from 'sql.js';
 import { SCHEMA } from '../../../src/db/schema.js';
@@ -59,7 +60,7 @@ class InMemoryGenerationStore {
   }
 
   createGeneration(data: Omit<Generation, 'id' | 'created_at'> & { images: GenerationImage[] }): Generation {
-    const id = crypto.randomUUID();
+    const id = randomUUID();
     const created_at = new Date().toISOString();
 
     this.db.run(`
