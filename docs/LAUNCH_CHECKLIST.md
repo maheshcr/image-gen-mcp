@@ -76,7 +76,12 @@ Steps:
 6. Register with Claude Code:
    claude mcp add image-gen ~/.config/image-gen-mcp/config.yaml
 7. Restart Claude Code
-8. Try: "Generate an image of a sunset over mountains"
+8. Try these prompts:
+   - "Generate an image of a sunset over mountains"
+   - "Create a logo for a coffee shop called Bean There"
+   - "Generate a 1:1 image of a cat wearing sunglasses"
+   - "I like the second one" (to test the select workflow)
+   - "How much have I spent on image generation?" (to test cost tracking)
 
 Let me know:
 - Did the setup wizard work smoothly?
