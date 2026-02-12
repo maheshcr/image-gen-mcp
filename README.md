@@ -28,6 +28,10 @@ You: The second one
 Claude: Done! https://images.yourdomain.com/2026/02/mountain-dawn.jpg
 ```
 
+### Demo
+
+<video src="https://github.com/maheshcr/image-gen-mcp/raw/main/docs/screenshots/ImageGenDemo-trimmed.mov" controls width="100%"></video>
+
 ## Features
 
 - **Multi-provider support**: Gemini (free tier!), Fal.ai — more providers coming soon
