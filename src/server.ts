@@ -40,13 +40,13 @@ const tools = [
     name: 'generate_images',
     description: `Generate images with AI. Returns local preview file paths.
 
-IMPORTANT: After calling this tool, present the preview file paths to the user so they can view the images. Do NOT describe or narrate what the images might look like — you cannot see them. Simply list the previews with their index numbers and ask the user which one to select.`,
+IMPORTANT: Pass the user's prompt exactly as provided. Do NOT rewrite, enhance, or embellish the prompt — use their exact words. After calling this tool, present the preview file paths to the user so they can view the images. Do NOT describe or narrate what the images might look like — you cannot see them. Simply list the previews with their index numbers and ask the user which one to select.`,
     inputSchema: {
       type: 'object' as const,
       properties: {
         prompt: {
           type: 'string',
-          description: 'The image generation prompt',
+          description: 'The image generation prompt. Pass the user\'s exact words — do not rewrite or enhance.',
         },
         negative_prompt: {
           type: 'string',
