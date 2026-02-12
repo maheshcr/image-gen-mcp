@@ -30,7 +30,7 @@ Claude: Done! https://images.yourdomain.com/2026/02/mountain-dawn.jpg
 
 ### Demo
 
-[![Watch the demo](docs/screenshots/demo-thumbnail.jpg)](https://github.com/maheshcr/image-gen-mcp/releases/download/v0.1.0/ImageGenDemo-trimmed.mp4)
+https://github.com/user-attachments/assets/61ae6cbe-6379-4a0d-811c-e9352698dd87
 
 ## Features
 
