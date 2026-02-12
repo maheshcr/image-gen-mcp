@@ -25,8 +25,6 @@
     "ai",
     "gemini",
     "fal",
-    "replicate",
-    "together",
     "flux",
     "stable-diffusion",
     "claude",
@@ -34,6 +32,13 @@
   ],
   "author": "Mahesh",
   "license": "MIT",
+  "files": [
+    "dist",
+    "config.example.yaml",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "@aws-sdk/client-s3": "^3.500.0",
     "@fal-ai/client": "^1.2.0",

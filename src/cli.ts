@@ -24,27 +24,6 @@ const PROVIDERS = [
     envVar: 'FAL_API_KEY',
     defaultModel: 'fal-ai/flux/schnell'
   },
-  {
-    name: 'together',
-    label: 'Together.ai',
-    url: 'https://together.ai/',
-    envVar: 'TOGETHER_API_KEY',
-    defaultModel: 'black-forest-labs/FLUX.1-schnell-Free'
-  },
-  {
-    name: 'replicate',
-    label: 'Replicate',
-    url: 'https://replicate.com/',
-    envVar: 'REPLICATE_API_TOKEN',
-    defaultModel: 'black-forest-labs/flux-schnell'
-  },
-  {
-    name: 'huggingface',
-    label: 'HuggingFace',
-    url: 'https://huggingface.co/inference-api',
-    envVar: 'HF_TOKEN',
-    defaultModel: 'black-forest-labs/FLUX.1-schnell'
-  },
 ];
 
 const STORAGE_OPTIONS = [
@@ -57,12 +36,6 @@ const STORAGE_OPTIONS = [
     name: 'r2',
     label: 'Cloudflare R2',
     url: 'https://developers.cloudflare.com/r2/',
-    description: 'S3-compatible cloud storage'
-  },
-  {
-    name: 'b2',
-    label: 'Backblaze B2',
-    url: 'https://www.backblaze.com/cloud-storage',
     description: 'S3-compatible cloud storage'
   },
 ];

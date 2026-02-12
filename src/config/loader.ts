@@ -7,13 +7,13 @@ import { config as loadDotenv } from 'dotenv';
 
 const ConfigSchema = z.object({
   provider: z.object({
-    name: z.enum(['fal', 'replicate', 'together', 'huggingface', 'gemini']),
+    name: z.enum(['gemini', 'fal']),
     api_key: z.string(),
     default_model: z.string().default('fal-ai/flux/schnell'),
     fallback_provider: z.string().optional(),
   }),
   storage: z.object({
-    name: z.enum(['r2', 'b2', 'wasabi', 'local']),
+    name: z.enum(['r2', 'local']),
     bucket: z.string(),
     endpoint: z.string().optional(),
     access_key: z.string().optional(),

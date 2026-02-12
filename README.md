@@ -30,8 +30,8 @@ Claude: Done! https://images.yourdomain.com/2026/02/mountain-dawn.jpg
 
 ## Features
 
-- **Multi-provider support**: Gemini (free tier!), Fal.ai, Replicate
-- **Cloud storage**: Cloudflare R2 (free egress), Backblaze B2, local storage
+- **Multi-provider support**: Gemini (free tier!), Fal.ai — more providers coming soon
+- **Cloud storage**: Cloudflare R2 (free egress), local storage
 - **Cost tracking**: Per-generation costs, monthly budgets, alerts
 - **Generation history**: SQLite-backed, queryable via MCP tools
 - **Preview → Select workflow**: Generate variations, pick the best, auto-upload
@@ -73,11 +73,8 @@ Choose your image generation provider:
 ────────────────────────────────────────
   1. Gemini (https://ai.google.dev/)
   2. Fal.ai (https://fal.ai/)
-  3. Together.ai (https://together.ai/)
-  4. Replicate (https://replicate.com/)
-  5. HuggingFace (https://huggingface.co/inference-api)
 
-Select [1-5]: 1
+Select [1-2]: 1
 
 Get your API key at: https://ai.google.dev/
 Enter your Gemini API key: ********
@@ -222,7 +219,7 @@ View or update settings from within Claude Code.
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `show` | boolean | Show current configuration |
-| `provider` | string | Switch provider: gemini, fal, together, replicate, huggingface |
+| `provider` | string | Switch provider: gemini, fal |
 | `model` | string | Set default model |
 | `budget_limit` | number | Set monthly budget in USD |
 | `count` | number | Default variations per generation (1-4) |
@@ -242,16 +239,14 @@ View or update settings from within Claude Code.
 |----------|--------|---------|-------|
 | **Gemini** | gemini-2.0-flash-exp | Free tier available | [ai.google.dev](https://ai.google.dev/) |
 | **Fal.ai** | Flux Schnell, Flux Dev, SDXL | ~$0.01-0.03/image | [fal.ai](https://fal.ai/) |
-| **Together.ai** | FLUX.1-schnell (free), FLUX.1-dev | Free - $0.02/image | [together.ai](https://together.ai/) |
-| **Replicate** | Flux, SDXL, SD3 | ~$0.01-0.05/image | [replicate.com](https://replicate.com/) |
-| **HuggingFace** | FLUX, SDXL, many others | Free tier + pay-as-you-go | [huggingface.co](https://huggingface.co/inference-api) |
+
+More providers (Together.ai, Replicate, HuggingFace) are on the roadmap.
 
 ## Supported Storage
 
 | Provider | Egress Cost | Links |
 |----------|-------------|-------|
 | **Cloudflare R2** | Free egress | [developers.cloudflare.com/r2](https://developers.cloudflare.com/r2/) |
-| **Backblaze B2** | $0.01/GB | [backblaze.com](https://www.backblaze.com/cloud-storage) |
 | **Local** | N/A | For development/testing |
 
 ## Configuration Reference
@@ -262,7 +257,7 @@ See [config.example.yaml](config.example.yaml) for full configuration options.
 
 ```yaml
 provider:
-  name: gemini           # gemini | fal | replicate
+  name: gemini           # gemini | fal
   api_key: ${API_KEY}    # Use env var reference
   default_model: ...     # Provider-specific model ID
   fallback_provider: fal # Optional fallback
@@ -272,7 +267,7 @@ provider:
 
 ```yaml
 storage:
-  name: r2               # r2 | b2 | local
+  name: r2               # r2 | local
   bucket: my-images      # Bucket name (r2/b2)
   endpoint: ...          # S3-compatible endpoint
   access_key: ...        # S3 access key
@@ -338,7 +333,7 @@ image-gen-mcp/
 
 ### "Upload failed"
 
-1. Verify R2/B2 credentials
+1. Verify R2 credentials
 2. Check bucket exists and is accessible
 3. Verify `public_url_prefix` matches your R2 custom domain
 

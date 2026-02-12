@@ -2,7 +2,7 @@
 # Copy to ~/.config/image-gen-mcp/config.yaml and fill in values
 
 # Image Generation Provider
-# Supported: gemini | fal | replicate | together | huggingface
+# Supported: gemini | fal
 provider:
   name: gemini                         # Recommended: Gemini with free tier
   api_key: ${GOOGLE_API_KEY}           # Set GOOGLE_API_KEY environment variable
@@ -15,14 +15,8 @@ provider:
 #   api_key: ${FAL_API_KEY}
 #   default_model: fal-ai/flux/schnell
 
-# Alternative: Replicate
-# provider:
-#   name: replicate
-#   api_key: ${REPLICATE_API_TOKEN}
-#   default_model: black-forest-labs/flux-schnell
-
 # Cloud Storage
-# Supported: r2 | b2 | wasabi | local
+# Supported: r2 | local
 storage:
   name: r2                             # Cloudflare R2 (recommended - free egress)
   bucket: my-images                    # Your bucket name

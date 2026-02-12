@@ -15,9 +15,9 @@ Without parameters: shows current config.
 With parameters: updates specified settings.
 
 Configurable settings:
-- provider: gemini | fal | together | replicate | huggingface
+- provider: gemini | fal
 - model: the default model to use
-- storage: local | r2 | b2
+- storage: local | r2
 - budget_limit: monthly budget in USD (0 for unlimited)
 
 After changing provider, you may need to update the API key via the CLI: npx image-gen-mcp setup`,
@@ -30,7 +30,7 @@ After changing provider, you may need to update the API key via the CLI: npx ima
       },
       provider: {
         type: 'string',
-        enum: ['gemini', 'fal', 'together', 'replicate', 'huggingface'],
+        enum: ['gemini', 'fal'],
         description: 'Switch to a different provider',
       },
       model: {
@@ -119,17 +119,11 @@ export async function configureTool(params: ConfigureParams): Promise<string> {
     const providerModels: Record<string, string> = {
       gemini: 'gemini-2.0-flash-exp',
       fal: 'fal-ai/flux/schnell',
-      together: 'black-forest-labs/FLUX.1-schnell-Free',
-      replicate: 'black-forest-labs/flux-schnell',
-      huggingface: 'black-forest-labs/FLUX.1-schnell',
     };
 
     const envVars: Record<string, string> = {
       gemini: 'GOOGLE_API_KEY',
       fal: 'FAL_API_KEY',
-      together: 'TOGETHER_API_KEY',
-      replicate: 'REPLICATE_API_TOKEN',
-      huggingface: 'HF_TOKEN',
     };
 
     config.provider.name = params.provider;
@@ -181,9 +175,6 @@ export async function configureTool(params: ConfigureParams): Promise<string> {
     const envVars: Record<string, string> = {
       gemini: 'GOOGLE_API_KEY',
       fal: 'FAL_API_KEY',
-      together: 'TOGETHER_API_KEY',
-      replicate: 'REPLICATE_API_TOKEN',
-      huggingface: 'HF_TOKEN',
     };
 
     result.api_key_reminder = {

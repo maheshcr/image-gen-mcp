@@ -417,7 +417,7 @@ database:
       });
 
       it('should accept all valid provider names', async () => {
-        const providers = ['fal', 'replicate', 'together', 'huggingface', 'gemini'];
+        const providers = ['gemini', 'fal'];
 
         for (const providerName of providers) {
           const configYaml = `
@@ -449,7 +449,7 @@ database:
       });
 
       it('should accept all valid storage names', async () => {
-        const storageNames = ['r2', 'b2', 'wasabi', 'local'];
+        const storageNames = ['r2', 'local'];
 
         for (const storageName of storageNames) {
           const configYaml = `

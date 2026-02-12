@@ -154,60 +154,6 @@ describe('configureTool', () => {
       expect(data.api_key_reminder.message).toContain('GOOGLE_API_KEY');
     });
 
-    it('should update provider to together', async () => {
-      (existsSync as any).mockReturnValue(true);
-      (parseYaml as any).mockReturnValue({
-        provider: { name: 'fal', default_model: 'fal-ai/flux/schnell', api_key: 'old-key' },
-        storage: { name: 'r2', bucket: 'test', public_url_prefix: 'https://example.com' },
-        budget: { monthly_limit: 25 },
-        defaults: { count: 3, aspect_ratio: '16:9' },
-      });
-
-      const result = await configureTool({ provider: 'together' });
-      const data = JSON.parse(result);
-
-      expect(data.success).toBe(true);
-      expect(data.changes).toContain('provider \u2192 together');
-      expect(data.changes).toContain('model \u2192 black-forest-labs/FLUX.1-schnell-Free');
-      expect(data.api_key_reminder.message).toContain('TOGETHER_API_KEY');
-    });
-
-    it('should update provider to replicate', async () => {
-      (existsSync as any).mockReturnValue(true);
-      (parseYaml as any).mockReturnValue({
-        provider: { name: 'fal', default_model: 'fal-ai/flux/schnell', api_key: 'old-key' },
-        storage: { name: 'r2', bucket: 'test', public_url_prefix: 'https://example.com' },
-        budget: { monthly_limit: 25 },
-        defaults: { count: 3, aspect_ratio: '16:9' },
-      });
-
-      const result = await configureTool({ provider: 'replicate' });
-      const data = JSON.parse(result);
-
-      expect(data.success).toBe(true);
-      expect(data.changes).toContain('provider \u2192 replicate');
-      expect(data.changes).toContain('model \u2192 black-forest-labs/flux-schnell');
-      expect(data.api_key_reminder.message).toContain('REPLICATE_API_TOKEN');
-    });
-
-    it('should update provider to huggingface', async () => {
-      (existsSync as any).mockReturnValue(true);
-      (parseYaml as any).mockReturnValue({
-        provider: { name: 'fal', default_model: 'fal-ai/flux/schnell', api_key: 'old-key' },
-        storage: { name: 'r2', bucket: 'test', public_url_prefix: 'https://example.com' },
-        budget: { monthly_limit: 25 },
-        defaults: { count: 3, aspect_ratio: '16:9' },
-      });
-
-      const result = await configureTool({ provider: 'huggingface' });
-      const data = JSON.parse(result);
-
-      expect(data.success).toBe(true);
-      expect(data.changes).toContain('provider \u2192 huggingface');
-      expect(data.changes).toContain('model \u2192 black-forest-labs/FLUX.1-schnell');
-      expect(data.api_key_reminder.message).toContain('HF_TOKEN');
-    });
-
     it('should not update model when both provider and model are specified', async () => {
       (existsSync as any).mockReturnValue(true);
       (parseYaml as any).mockReturnValue({
