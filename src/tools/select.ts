@@ -134,6 +134,7 @@ export async function selectImage(args: SelectArgs, ctx: Context) {
             deleted_previews: deletedPreviews.length,
             retained_previews: retainedPreviews,
           },
+          _hint: 'Present the permanent_url and markdown to the user. Do not describe the image.',
         }, null, 2),
       },
     ],

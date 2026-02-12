@@ -38,7 +38,9 @@ const db = new GenerationStore(config.database.path);
 const tools = [
   {
     name: 'generate_images',
-    description: 'Generate images with AI. Returns preview URLs for selection.',
+    description: `Generate images with AI. Returns local preview file paths.
+
+IMPORTANT: After calling this tool, present the preview file paths to the user so they can view the images. Do NOT describe or narrate what the images might look like — you cannot see them. Simply list the previews with their index numbers and ask the user which one to select.`,
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -70,7 +72,9 @@ const tools = [
   },
   {
     name: 'select_image',
-    description: 'Select an image from a generation and upload to permanent storage.',
+    description: `Select an image from a generation and upload to permanent storage.
+
+IMPORTANT: After upload, present the permanent URL and markdown to the user. Do NOT describe the image.`,
     inputSchema: {
       type: 'object' as const,
       properties: {

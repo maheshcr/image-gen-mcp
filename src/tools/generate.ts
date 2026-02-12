@@ -143,6 +143,7 @@ export async function generateImages(args: GenerateArgs, ctx: Context) {
           cost: result.cost,
           model_used: result.model_used,
           budget_warning: budgetWarning,
+          _hint: 'Present the preview file paths to the user. Do not describe the images. Ask which one to select.',
         }, null, 2),
       },
     ],
